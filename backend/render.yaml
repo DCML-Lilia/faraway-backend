@@ -2,7 +2,7 @@ services:
   - type: web
     name: backend
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: ./render-build.sh
     startCommand: gunicorn mon_projet.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
