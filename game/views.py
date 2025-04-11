@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework import status
+from game.model_loader import model_sanctu, model_region
 import os
 import shutil
 import re
@@ -44,8 +45,6 @@ class PhotoUploadView(APIView):
             return Response({"error": "Invalid input"}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            model_sanctu = os.path.join("models", "model_sanctuaires.h5")
-            model_region = os.path.join("models", "model_regions.h5")
 
             print("🔍 model_sanctu =", os.path.abspath(model_sanctu))
             print("📂 Fichier existe ?", os.path.exists(model_sanctu))
