@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import os
-import tensorflow as tf
+from game.model_loader import model_sanctu, model_region
 from PIL import Image, ExifTags
 
 def detect_card_edges(image_path, output_path):
@@ -213,8 +213,7 @@ IMG_SIZE = 128  # Même taille que celle utilisée lors de l'entraînement
 
 
 # 📸 Fonction pour tester une image sanctuaire
-def predict_sanctu(image_path,model_sanctu,bdd_sanctu):
-    model=tf.keras.models.load_model(model_sanctu)
+def predict_sanctu(image_path,model,bdd_sanctu):
     # 📂 Labels (mappage des indices de classes aux noms des cartes)
     labels_dict = {i: f"sanctuaire{i+1}" for i in range(45)}
 
@@ -242,8 +241,7 @@ def predict_sanctu(image_path,model_sanctu,bdd_sanctu):
 
 
 # 📸 Fonction pour tester une image région
-def predict_region(image_path,model_region,bdd_region):
-    model=tf.keras.models.load_model(model_region)
+def predict_region(image_path,model,bdd_region):
     # 📂 Labels (mappage des indices de classes aux noms des cartes)
     labels_dict = {i: f"region{i+1}" for i in range(68)}
 
